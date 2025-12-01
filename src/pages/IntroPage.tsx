@@ -2,40 +2,37 @@ import { useEffect, useRef } from "react";
 import * as THREE from 'three';
 
 function IntroPage() {
-    const mountRef = useRef<HTMLDivElement | null>(null);
+  const mountRef = useRef<HTMLDivElement | null>(null);
 
-    useEffect(() => {
+  useEffect(() => {
 
-      const scene = new THREE.Scene();
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-      const renderer = new THREE.WebGLRenderer();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer();
+    renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const mount = mountRef.current;
-      if (mount) {
-        
-        // ensure the mount container is positioned so overlay can sit above the canvas
-        mount.style.position = 'relative';
-        mount.appendChild(renderer.domElement);
+    const mount = mountRef.current;
+    if (mount) {
 
-        // position the canvas absolutely and give it a lower z-index than the overlay
-        renderer.domElement.style.position = 'absolute';
-        renderer.domElement.style.top = '0';
-        renderer.domElement.style.left = '0';
-        renderer.domElement.style.zIndex = '0';
-      }
+      // ensure the mount container is positioned so overlay can sit above the canvas
+      mount.style.position = 'relative';
+      mount.appendChild(renderer.domElement);
 
-        // ---- Cube ----
-        const boxGeometry = new THREE.BoxGeometry();
-        const edgesOnly = new THREE.EdgesGeometry(boxGeometry); 
-        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+      // position the canvas absolutely and give it a lower z-index than the overlay
+      renderer.domElement.style.position = 'absolute';
+      renderer.domElement.style.top = '0';
+      renderer.domElement.style.left = '0';
+      renderer.domElement.style.zIndex = '0';
+    }
 
+    // ---- Cube ----
+    const boxGeometry = new THREE.BoxGeometry();
+    const edgesOnly = new THREE.EdgesGeometry(boxGeometry);
+    const lineMaterial = new THREE.LineBasicMaterial({ color: 0xffffff });
+    const edgedCube = new THREE.LineSegments(edgesOnly, lineMaterial);
+    scene.add(edgedCube);
 
-        
-        const edgedCube = new THREE.LineSegments(edgesOnly, lineMaterial);
-        scene.add(edgedCube);
-
-        camera.position.z = 2;
+    camera.position.z = 2;
 
     // ---- Animation loop ----
     function animate() {
@@ -57,7 +54,7 @@ function IntroPage() {
     };
   }, []);
 
-return (
+  return (
     <div
       ref={mountRef}
       style={{
