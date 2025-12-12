@@ -1,0 +1,89 @@
+/* Hero section with a background canvas for a small spinning cube */
+.hero {
+  min-height: 80vh;
+  position: relative;
+  width: 100%;
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  color: #ffffff;
+  overflow: hidden;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  display: block;
+  pointer-events: none;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.hero-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 16px;
+  box-sizing: border-box;
+}
+
+.item-names {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.05;
+}
+
+.item-title {
+  margin: 8px 0 0;
+  opacity: 0.9;
+}
+
+h1{
+  font-family: 'Roboto Mono', monospace;
+}
+
+@media (max-width: 640px) {
+  .dev-name { font-size: 1.5rem; }
+  .hero-container { padding: 32px 12px; }
+}
+
+/* Titles with GSAP highlight */
+.hero-item { display: flex; flex-direction: column; gap: 12px; }
+.item-title {
+  position: relative;
+  overflow: hidden;
+  margin: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+/* Clip the animated gradient to the text so the light only appears on letters */
+.title-inner {
+  position: relative;
+  z-index: 2;
+  display: inline-block;
+  /* gradient will animate left->right */
+  background: linear-gradient(  90deg, #FFFFFFF2 0%,   #66D9EDF2 40%,   #66D9EDF2 100%);
+  background-size: 200% 100%;
+  background-position: 0% 50%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.title-highlight {
+  /* keep for accessibility or alternate effects; currently unused */
+  display: none;
+}
+
+.item-title:focus .title-inner,
+.item-title:focus-visible .title-inner {
+  outline: none;
+}
