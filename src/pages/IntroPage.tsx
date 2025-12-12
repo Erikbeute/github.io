@@ -97,7 +97,7 @@ function IntroPage() {
           <div ref={mountRef} className="intro-root">
             <canvas ref={canvasRef} className="intro-canvas" />
           </div>
-
+ 
           <div className="intro-overlay">
             <MouseScroller />
           </div>
