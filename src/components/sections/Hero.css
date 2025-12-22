@@ -1,12 +1,12 @@
 /* Hero section with a background canvas for a small spinning cube */
 .hero {
-  min-height: 85vh;
+  min-height: 90vh;
   position: relative;
   width: 100%;
   display: flex;
   color: #ffffff;
-  overflow: visible;
-    align-items: center;     /* vertical */
+  overflow: auto;
+  align-items: center;    
 }
 
 .hero__canvas {
@@ -26,7 +26,7 @@
 }
 
 .hero-container {
-  align-items: center; /* vertical only */
+  align-items: center; 
   margin-left: 10%;
   box-sizing: border-box;
   float: left; 

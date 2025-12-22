@@ -4,7 +4,7 @@
   width: 100vw;
   height: 100vh;
   z-index: 9;
-  overflow: hidden;
+  overflow: auto;
   display: block;
   pointer-events: auto;
   background: transparent;
@@ -19,7 +19,14 @@
 .intro-container {
   position: fixed;
   inset: 0;
-  overflow: hidden;
+  overflow: auto;
+  /* Hide scrollbar for Firefox */
+  scrollbar-width: none;
+  -ms-overflow-style: none; 
+}
+
+.intro-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
 }
 
 .home-layer {
@@ -27,14 +34,23 @@
   inset: 0;
   filter: blur(20px);
   transform: scale(1.05);
-  transition: filter 0.8s ease, transform 0.8s ease;
+  transition: filter 0.8s ease, transform 0.8s ease, position 0s linear 0.8s;
   pointer-events: none;
 }
 
 .home-layer.revealed {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: auto;
   filter: blur(0);
   transform: scale(1);
   pointer-events: auto;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  transition: filter 0.8s ease, transform 0.8s ease;
 }
 
 .intro-root {

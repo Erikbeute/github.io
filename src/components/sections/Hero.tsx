@@ -4,7 +4,7 @@ import './Hero.css';
 import { gsap } from 'gsap';
 import { Resume } from './Resume';
 import { Projects } from './Projects';
-import { Experiments } from './Experiments';
+
 
 export const Hero: React.FC = () => {
     const mountRef = useRef<HTMLDivElement | null>(null);
@@ -13,10 +13,25 @@ export const Hero: React.FC = () => {
     type Section = "Hero" | "Resume" | "Projects" | "Experiments";
     const [section, setSection] = useState<Section>("Hero");
 
+    // Log when component mounts and when section changes
     useEffect(() => {
+        console.log("Hero component mounted or section changed:", section);
+    }, [section]);
+
+    useEffect(() => {
+        console.log("Cube useEffect running, section:", section);
         const mount = mountRef.current;
         const canvas = canvasRef.current;
-        if (!mount || !canvas) return;
+        
+        console.log("Refs check - mount:", !!mount, "canvas:", !!canvas, "section is Hero:", section === "Hero");
+        
+        // Only initialize cube when section is Hero and refs are available
+        if (!mount || !canvas || section !== "Hero") {
+            console.log("Cube setup skipped - mount:", !!mount, "canvas:", !!canvas, "section:", section);
+            return;
+        }
+
+        console.log("cube loading");
 
         // Renderer using existing canvas so we don't append elements elsewhere
         const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
@@ -60,8 +75,10 @@ export const Hero: React.FC = () => {
         };
 
         animate();
+        console.log("loaded");
 
         return () => {
+            console.log("Cube cleanup - disposing resources");
             cancelAnimationFrame(rafId);
             window.removeEventListener('resize', resize);
             geometry.dispose();
@@ -70,10 +87,12 @@ export const Hero: React.FC = () => {
             (edges.material as THREE.Material).dispose();
             renderer.dispose();
         };
-    }, []);
+    }, [section]); // Re-run when section changes
 
     // GSAP hover highlight for titles
     useEffect(() => {
+        if (section !== "Hero") return; // Only setup when Hero section is active
+        
         const els = Array.from(document.querySelectorAll('.item-title')) as HTMLElement[];
         const tls: { el: HTMLElement; tl: gsap.core.Timeline; onEnter: () => void; onLeave: () => void }[] = [];
 
@@ -107,7 +126,7 @@ export const Hero: React.FC = () => {
                 tl.kill();
             });
         };
-    }, []);
+    }, [section]); // Re-run when section changes
 
     return (
         <>
@@ -134,12 +153,6 @@ export const Hero: React.FC = () => {
                                     onClick={() => setSection("Projects")}>
                                     <span className="title-inner">Projects</span>
                                 </button>
-
-                                <button
-                                    className="item-title"
-                                    onClick={() => setSection("Experiments")}>
-                                    <span className="title-inner">Experiments</span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -151,9 +164,6 @@ export const Hero: React.FC = () => {
             )}
             {section === "Projects" && (
                 <Projects onBack={() => setSection("Hero")} />
-            )}
-            {section === "Experiments" && 
-            ( <Experiments onBack = {() => setSection("Hero")} /> 
             )}
         </>
     );

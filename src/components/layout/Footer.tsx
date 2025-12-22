@@ -4,7 +4,7 @@ import './Footer.css';
 
 export const Footer: React.FC = () => {
   return (
-    <nav className="footer">
+    <footer className="footer">
       <div className="footer-container">
         <ul className="center-menu">
           <li className="nav-item">
@@ -32,6 +32,6 @@ export const Footer: React.FC = () => {
           </li>
         </ul>
       </div>
-    </nav>
+    </footer>
   );
 };

@@ -54,14 +54,42 @@
 .resume-back {
   all: unset;
   cursor: pointer;
-  margin-bottom: 32px;
+  margin-bottom: 0px;
   display: inline-block;
-
   font-family: 'Roboto Mono', monospace;
-  font-size: 0.9rem;
+  font-size: 14px;
   opacity: 0.7;
 }
 
 .resume-back:hover {
   opacity: 1;
+  color: #66D9EDF2;
+}
+
+.resume-item-title{
+  color: #66D9EDF2; 
+  min-width: 100%; 
+  text-align: left;
+}
+
+.resume-skills-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.resume-skills-icons li {
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #444;
+}
+
+.resume-skills-icons li:hover {
+  transform: scale(1.15);
+  color: #2563eb; /* Tailwind blue */
+  transition: all 0.2s ease;
 }
