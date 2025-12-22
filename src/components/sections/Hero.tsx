@@ -4,7 +4,7 @@ import './Hero.css';
 import { gsap } from 'gsap';
 import { Resume } from './Resume';
 import { Projects } from './Projects';
-import { Experiments } from './Experiments';
+
 
 export const Hero: React.FC = () => {
     const mountRef = useRef<HTMLDivElement | null>(null);
@@ -153,12 +153,6 @@ export const Hero: React.FC = () => {
                                     onClick={() => setSection("Projects")}>
                                     <span className="title-inner">Projects</span>
                                 </button>
-
-                                <button
-                                    className="item-title"
-                                    onClick={() => setSection("Experiments")}>
-                                    <span className="title-inner">Experiments</span>
-                                </button>
                             </div>
                         </div>
                     </div>
@@ -170,9 +164,6 @@ export const Hero: React.FC = () => {
             )}
             {section === "Projects" && (
                 <Projects onBack={() => setSection("Hero")} />
-            )}
-            {section === "Experiments" && 
-            ( <Experiments onBack = {() => setSection("Hero")} /> 
             )}
         </>
     );

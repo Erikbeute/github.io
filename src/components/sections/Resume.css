@@ -68,10 +68,9 @@
 
 .resume-item-title{
   color: #66D9EDF2; 
+  min-width: 100%; 
+  text-align: left;
 }
-
-
-/* quick add */ 
 
 .resume-skills-icons {
   display: grid;
