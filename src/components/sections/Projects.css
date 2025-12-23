@@ -67,3 +67,6 @@ h3 {
   color: #fff;
 }
 
+.react-slideshow-wrapper.slide {
+max-height: 800px;
+}

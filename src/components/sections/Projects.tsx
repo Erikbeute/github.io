@@ -21,7 +21,6 @@ export const Projects: React.FC<ResumeProps> = ({ onBack }) => {
         arrows: false,
         infinite: true,
         easing: "ease",
-
         slidesToShow: 1,
         slidesToScroll: 0,
         indicators: (i?: number) => (
@@ -30,9 +29,9 @@ export const Projects: React.FC<ResumeProps> = ({ onBack }) => {
     };
 
     const slideImages = [
-        "https://images.unsplash.com/photo-1509721434272-b79147e0e708",
-        "https://images.unsplash.com/photo-1506710507565-203b9f24669b",
-        "https://images.unsplash.com/photo-1536987333706-fc9adfb10d91",
+        "../../projects/Beta.png",
+        "../../projects/LockerFabriek.png",
+        "../../projects/BuurPortaal.png",
         "https://images.unsplash.com/photo-1444525873963-75d329ef9e1b"
     ];
     return (
